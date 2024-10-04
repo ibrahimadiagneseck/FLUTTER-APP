@@ -1,0 +1,11 @@
+// https://www.youtube.com/watch?v=oaKpdSS2YuU&list=PLdKVEanRftb9MzfasPHY6bh1kkcBIL3Sy&index=4
+
+
+flutter downgrade v3.0.0
+
+flutter create app2
+
+
+dart pub get
+
+dart migrate
