@@ -1,4 +1,4 @@
-// https://www.youtube.com/watch?v=oaKpdSS2YuU&list=PLdKVEanRftb9MzfasPHY6bh1kkcBIL3Sy&index=4
+https://www.youtube.com/watch?v=oaKpdSS2YuU&list=PLdKVEanRftb9MzfasPHY6bh1kkcBIL3Sy  1h:08
 
 
 flutter downgrade v3.0.0
@@ -9,3 +9,163 @@ flutter create app2
 dart pub get
 
 dart migrate
+
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+flutter_automation: ^2.0.0
+
+
+
+\android
+
+keytool.exe -list -alias androiddebugkey -keystore "D:\AndroidKeystore\debug.keystore" -storepass android -keypass android
+
+
+
+
+android\key.properties
+ios\key.properties
+
+storePassword=123456
+keyPassword=123456
+keyAlias=test
+storeFile=../../keys/keystore.jks
+
+-------------------------------------------------------------
+
+1. Firebase Auth 
+This sets up firebase authentication with google and email based login automatically in your flutter project. Also copies boilerplate login ui flow using provider package for state management
+
+flutter pub pub run flutter_automation --firebase-auth
+
+-------------------------------------------------------------
+
+3. Android Signing 
+Generates keystore and sets up android signing config in your flutter project.
+
+It uses keytool to generate keystore so, for this script to work keytool must be in path.
+
+
+# flutter pub pub run flutter_automation --android-sign
+
+# app
+# CN=app.flutter L=Ibrahima C=Senegal
+# 123456
+# 123456
+
+# flutter build appbundle
+-------------------------------------------------------------
+
+
+keytool -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore
+
+
+#    keytool -list -v -alias androiddebugkey .\android\debug.keystore
+#    keytool -list -v -alias androiddebugkey -keystore .\keys\keystore.jks
+##   keytool -list -keystore .\keys\keystore.jks -storepass 123456
+###  keytool -list -v -alias app -keystore .\keys\keystore.jks -storepass 123456
+
+-------------------------------------------------------------
+
+
+C:\Users\ibrah\Documents\GitHub\FLUTTER APP\app2\android\build.gradle
+
+plugins {
+  id("com.android.application")
+
+  // Add the Google services Gradle plugin
+  id("com.google.gms.google-services")
+
+  ...
+  }
+
+dependencies {
+  // Import the Firebase BoM
+  implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+
+
+  // TODO: Add the dependencies for Firebase products you want to use
+  // When using the BoM, don't specify versions in Firebase dependencies
+  // https://firebase.google.com/docs/android/setup#available-libraries
+}
+
+-------------------------------------------------------------
+
+C:\Users\ibrah\Documents\GitHub\FLUTTER APP\app2\android\build.gradle
+
+buildscript {
+
+    repositories {
+        // Make sure that you have the following two repositories
+        google()  // Google's Maven repository
+        mavenCentral()  // Maven Central repository
+    }
+
+    dependencies {
+
+
+        classpath ("com.google.gms.google-services :4.4.1 ")
+
+    }
+}
+
+-------------------------------------------------------------
+
+C:\Users\ibrah\Documents\GitHub\FLUTTER APP\app2\android\app\build.gradle
+
+plugins {
+
+    id 'com.google.gms.google-services' version '4.4.2' apply false
+}
+
+.
+.
+.
+
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:33.4.0')
+}
+
+-------------------------------------------------------------
+
+defaultConfig {
+
+        applicationId = "com.example.app2" // "package_name": "com.app2.flutter"
+
+    }
+
+-------------------------------------------------------------
+
+
+flutter clean
+
+-------------------------------------------------------------
+
+https://firebase.flutter.dev/?gad_source=1&gclid=Cj0KCQjwjY64BhCaARIsAIfc7YYEvUbu-m6Ne1gdlnxVGmxlVhi1_uEwyMOgjLLbZBiFFMTpEFBvfysaAp5aEALw_wcB&gclsrc=aw.ds
+
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  firebase_core: ^3.6.0
+
+
+
+import 'package:firebase_core/firebase_core.dart';
+
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+
