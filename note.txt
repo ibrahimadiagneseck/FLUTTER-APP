@@ -1,5 +1,5 @@
 https://www.youtube.com/watch?v=oaKpdSS2YuU&list=PLdKVEanRftb9MzfasPHY6bh1kkcBIL3Sy  1h:08
-
+https://www.youtube.com/watch?v=ZtOZVMd4Jug&list=PLdKVEanRftb9MzfasPHY6bh1kkcBIL3Sy&index=6  00h28
 
 flutter downgrade v3.0.0
 
@@ -69,7 +69,9 @@ keytool -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore
 ###  keytool -list -v -alias app -keystore .\keys\keystore.jks -storepass 123456
 
 -------------------------------------------------------------
-
+##
+### Activé le mode developpeur
+##
 
 C:\Users\ibrah\Documents\GitHub\FLUTTER APP\app2\android\build.gradle
 
@@ -107,7 +109,7 @@ buildscript {
     dependencies {
 
 
-        classpath ("com.google.gms.google-services :4.4.1 ")
+        classpath ("com.google.gms.google-services")
 
     }
 }
@@ -155,11 +157,15 @@ https://firebase.flutter.dev/?gad_source=1&gclid=Cj0KCQjwjY64BhCaARIsAIfc7YYEvUb
 
 dependencies:
   firebase_core: ^3.6.0
+  firebase_auth: ^5.3.1
 
 
 
 import 'package:firebase_core/firebase_core.dart';
 
+
+
+git rm --cached app2/android/app/google-services.json
 
 FLUTTER APP/app2/android/app/google-services.json
 

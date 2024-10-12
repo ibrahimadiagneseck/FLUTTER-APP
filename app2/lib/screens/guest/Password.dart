@@ -6,7 +6,7 @@ class PasswordScreen extends StatefulWidget {
   // @override
   // State<PasswordScreen> createState() => _PasswordScreenState();
 
-  final Function(int?, String) onChangedStep;
+  final Function(int?, String?) onChangedStep;
 
 
   const PasswordScreen({
@@ -35,8 +35,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             color: Colors.black,
-            onPressed: () => widget.onChangedStep(0, ''),
-            // onPressed: () => widget.onChangedStep(0, null),
+            onPressed: () => widget.onChangedStep(0, null),
           ),
         ),
         body: Center(

@@ -6,6 +6,7 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+
   def keystoreProperties = new Properties()
   def keystorePropertiesFile = rootProject.file('key.properties')
   if (keystorePropertiesFile.exists()) {
@@ -60,10 +61,7 @@ flutter {
     source = "../.."
 }
 
-plugins {
-    id 'com.android.application'
-    id 'com.google.gms.google-services'
-}
+
 
 dependencies {
     implementation platform('com.google.firebase:firebase-bom:33.4.0')

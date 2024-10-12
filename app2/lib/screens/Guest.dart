@@ -1,5 +1,7 @@
+import 'package:app2/models/UserModel.dart';
 import 'package:app2/screens/guest/Password.dart';
 import 'package:app2/screens/guest/Term.dart';
+import 'package:app2/screens/services/UserService.dart';
 import 'package:flutter/material.dart';
 import 'guest/Auth.dart';
 
@@ -13,7 +15,7 @@ class GuestScreen extends StatefulWidget {
 
 class _GuestScreenState extends State<GuestScreen> {
   // CommonService _commonService = CommonService();
-  // UserService _userService = UserService();
+  UserService _userService = UserService();
 
   List<Widget> _widgets = [];
   int _indexSelected = 0;
@@ -29,19 +31,45 @@ class _GuestScreenState extends State<GuestScreen> {
       AuthScreen(onChangedStep: (int? step, String value) {
         setState(() {
           _indexSelected = step!;
+          _email = value;
         });
       }),
-      TermScreen(onChangedStep: (int? step, String value) {
+      TermScreen(onChangedStep: (int? step) {
         setState(() {
           _indexSelected = step!;
         });
       }),
-      PasswordScreen(onChangedStep: (int? step, String value) {
+      PasswordScreen(onChangedStep: (int? step, String? value) {
         setState(() {
-          _indexSelected = step!;
+
+          if (step != null) {
+            _indexSelected = step;
+          }
+
+          if (value != null) {
+            // UserModel userModel = UserModel(uid: uid, email: email, password: password);
+            UserModel userModel = UserModel(email: _email, password: value);
+            // print(userModel.toJson());
+            _userService.auth(userModel).then((value) => {
+              print(value.toJson()),
+            });
+          }
+
+
+
+          // if (connectedUserModel != null) {
+          //   Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => HomeScreen(),
+          //     ),
+          //   );
+          // }
         });
       }),
     ]);
+
+
 
 
     // AuthScreen authScreen = AuthScreen(
