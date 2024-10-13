@@ -4,11 +4,19 @@ class TermScreen extends StatefulWidget {
   // const TermScreen({super.key});
 
   final Function(int?) onChangedStep;
+  final String terms;
 
+
+  // const TermScreen({
+  //   super.key,
+  //   required this.onChangedStep,
+  //   required this.terms,
+  // }) : super(key: key);
 
   const TermScreen({
     super.key,
     required this.onChangedStep,
+    required this.terms,
   });
 
   @override
@@ -64,13 +72,13 @@ class _TermScreenState extends State<TermScreen> {
                     child: SingleChildScrollView(
                       controller: _scrollController,
                       physics: const AlwaysScrollableScrollPhysics(),
-                      // child: Column(
-                      //   crossAxisAlignment: CrossAxisAlignment.stretch,
-                      //   mainAxisAlignment: MainAxisAlignment.start,
-                      //   children: [
-                      //     Text(widget.terms),
-                      //   ],
-                      // ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(widget.terms),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(

@@ -20,15 +20,9 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Center(
           child: ElevatedButton(
             onPressed: () async {
-              // await _userService.logout();
+              await _userService.logout();
 
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => GuestScreen(),
-                ),
-                    (route) => false,
-              );
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => GuestScreen()), (route) => false);
             },
             child: Text('logout'),
           ),
