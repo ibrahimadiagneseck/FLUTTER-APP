@@ -32,35 +32,47 @@ class _GuestScreenState extends State<GuestScreen> {
     super.initState();
 
     // Écran d'authentification : gestion du passage d'étapes et stockage de l'email
-    AuthScreen authScreen = AuthScreen(onChangedStep: (int? step, String value) {
-      setState(() {
-        _indexSelected = step!;
-        _email = value;
-      });
-    });
+    AuthScreen authScreen = AuthScreen(
+      onChangedStep: (index, value) async {
+        StateRegistration stateRegistration = await _userService.mailinglist(value);
+
+        setState(() {
+          _indexSelected = index!;
+          _email = value;
+
+          if (stateRegistration == StateRegistration.COMPLETE) {
+            _indexSelected = _widgets.length - 1;
+          }
+        });
+      },
+    );
 
     // Écran de mot de passe : vérification de l'authentification avec l'email et le mot de passe
-    PasswordScreen passwordScreen = PasswordScreen(onChangedStep: (int? step, String? value) {
-      setState(() {
-        if (step != null) {
-          _indexSelected = step;
-        }
+    PasswordScreen passwordScreen = PasswordScreen(
+      onChangedStep: (index, value) async {
+        UserModel connectedUserModel = await _userService.auth(
+          UserModel(
+            email: _email,
+            password: value!,
+          ),
+        );
 
-        if (value != null) {
-          // Création d'un objet UserModel avec l'email et le mot de passe
-          UserModel userModel = UserModel(email: _email, password: value);
-          _userService.auth(userModel).then((userModel) {
-            if (userModel.uid != null) {
-              // Si l'utilisateur est authentifié, rediriger vers l'écran principal (HomeScreen)
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
-              );
-            }
-          });
-        }
-      });
-    });
+        setState(() {
+          if (index != null) {
+            _indexSelected = index;
+          }
+
+          if (connectedUserModel != null) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeScreen(),
+              ),
+            );
+          }
+        });
+      },
+    );
 
     // Récupération des termes via CommonService puis ajout des écrans à la liste des widgets
     _commonService.terms.then(
